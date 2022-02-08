@@ -1,0 +1,21 @@
+.wrapper {
+    max-width: 500px;
+    width: 96%;
+    margin: 50px auto;
+}
+
+form > * {
+    width: 100%;
+    display: block;
+}
+
+.error-message { display: block; }
+.error-message.display-none { display: none; }
+
+.remember-me-div > * {
+    margin-right: 10px;
+    display: inline-block;
+}
+
+.remember-me-div > *:hover { cursor: pointer; }
+.remember-me-div > *:last-child { margin-right: 0; }

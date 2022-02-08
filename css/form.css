@@ -1,0 +1,52 @@
+.wrapper {
+    max-width: 900px;
+    width: 55%;
+    margin: 50px auto;
+}
+
+p.note {
+    margin-bottom: 25px;
+    font-size: 18px;
+    word-spacing: 2px;
+}
+
+.percent-50 { 
+    display: flex;
+    align-items: center;
+}
+
+.percent-50 > * { flex-basis: 50%; }
+input[type="radio"]:hover, label, input[type="file"]:hover { cursor: pointer; }
+input[type="file"] { padding: unset; }
+
+.gender-div > h3 {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.submitted-data { margin-top: 30px; }
+
+.submitted-data > h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    font-weight: bold;
+}
+
+.submitted-data > h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
+    font-weight: bold; 
+}
+
+.submitted-data > p {
+    margin-bottom: 5px;
+    color: #04AA6D;
+    font-size: 16px;
+}
+
+.submitted-data > p > small { 
+    color: #000;
+    font-size: 14px; 
+}
+
+.submitted-data > figure { margin-top: 10px; }

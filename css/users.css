@@ -1,0 +1,27 @@
+.wrapper {
+    max-width: 750px;
+    width: 96%;
+    margin: 50px auto;
+}
+
+.wrapper > p { margin-bottom: 20px; }
+
+h2 {
+    margin-bottom: 25px;
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.users-list { margin-bottom: 25px; }
+
+.users-list > li {
+    margin-bottom: 15px;
+    display: flex;
+}
+
+.users-list > li:last-child { margin-bottom: 0; }
+.users-list > li > span { display: inline-block; }
+.email { flex-basis: 50%; }
+.update { flex-basis: 25%; }
+.delete { flex-basis: 25%; }
