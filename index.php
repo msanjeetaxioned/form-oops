@@ -23,15 +23,15 @@ require('utility/form-validation.php');
             <h1><?php echo isset($_COOKIE["update"]) ? "Update User" : "Register User"; ?></h1>
             <p class="note">Note: All of the below fields are Required.</p>
             <div class="name-div percent-50">
-                <input type="text" name="name" placeholder="Name" value="<?php echo isset($_POST['name']) ? htmlspecialchars($_POST['name'], ENT_QUOTES) : ''; ?>">
+                <input type="text" name="name" placeholder="Name" value="<?php echo isset($_COOKIE["update"]) ? $fields['name'] : (isset($_POST['name']) ? htmlspecialchars($_POST['name'], ENT_QUOTES) : '') ?>">
                 <span class="error-message"><?php echo Validation::$nameError; ?></span>
             </div>
             <div class="email-div percent-50">
-                <input type="email" name="email" placeholder="Email Id" value="<?php echo isset($_POST['email']) ? htmlspecialchars($_POST['email'], ENT_QUOTES) : ''; ?>">
+                <input type="email" name="email" placeholder="Email Id" value="<?php echo isset($_COOKIE["update"]) ? $fields['email'] : (isset($_POST['email']) ? htmlspecialchars($_POST['email'], ENT_QUOTES) : '') ?>">
                 <span class="error-message"><?php echo Validation::$emailError; ?></span>
             </div>
             <div class="mobile-div percent-50">
-                <input type="tel" name="phone-num" placeholder="Mobile Number" value="<?php echo isset($_POST['phone-num']) ? htmlspecialchars($_POST['phone-num'], ENT_QUOTES) : ''; ?>">
+                <input type="tel" name="phone-num" placeholder="Mobile Number" value="<?php echo isset($_COOKIE["update"]) ? $fields['mobile'] : (isset($_POST['phone-num']) ? htmlspecialchars($_POST['phone-num'], ENT_QUOTES) : '') ?>">
                 <span class="error-message"><?php echo Validation::$mobileNumError; ?></span>
             </div>
             <div class="gender-div percent-50">

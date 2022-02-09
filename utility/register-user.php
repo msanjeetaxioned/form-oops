@@ -71,21 +71,27 @@ class RegisterUser {
             DatabaseConnection::startConnection();
             if (mysqli_query(DatabaseConnection::$conn, $sql)) {
                 echo "<div class='submitted-data'>";
-                echo "<h2>User Registered Successfully, Thanks!</h2>";
+                if(isset($_COOKIE["update"])) {
+                    echo "<h2>User Updated Successfully, Thanks!</h2>";
+                } else {
+                    echo "<h2>User Registered Successfully, Thanks!</h2>";
+                }
                 echo "<h3>Submitted Data:</h3>";
                 echo "<p><small>Name: </small>$this->name</p>";
                 echo "<p><small>Email Address: </small>$this->email</p>";
                 echo "<p><small>Mobile Number: </small>$this->mobileNum</p>";
                 echo "<p><small>Gender: </small>$this->gender</p>";
                 echo "<p><small>Uploaded Image:</small></p>";
-                echo "<figure><img src='image-upload/".$filename."' alt='Your Profile Picture'></figure>";
+                echo "<figure><img src='image-upload/" . $filename . "' alt='Your Profile Picture'></figure>";
                 echo "</div>";
             } else {
                 echo "An Error Occurred " . mysqli_error(DatabaseConnection::$conn);
             }
             DatabaseConnection::closeDBConnection();
-            // Delete 'Update' Cookie after successfull Update of DB
             if(isset($_COOKIE["update"])) {
+                // Update Email in Cookie
+                setcookie("email", $this->email, time() + 365 * 24 * 60 * 60, "/", "", 0);
+                // Delete 'Update' Cookie after successfull Update of DB
                 setcookie("update", "", time() - 300, "/", "", 0);
             }
         }
