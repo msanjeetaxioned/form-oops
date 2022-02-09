@@ -2,20 +2,15 @@
 
 class RegisterUser {
     public $name;
-
     public $email;
-
     public $mobileNum;
-
     public $gender;
-
     public $password;
-
     public $confirmPass;
-
     public $file;
 
-    public function validateFields() {
+    public function validateFields() 
+    {
         // Name Validation
         $this->name = $_POST["name"];
         Validation::nameValidation($this->name);
@@ -57,7 +52,8 @@ class RegisterUser {
         }
     }
 
-    public function onSubmit() {
+    public function onSubmit() 
+    {
         if (Validation::$nameError == "" && Validation::$emailError == "" && Validation::$mobileNumError == "" && Validation::$genderError == "" && Validation::$passwordError == "" && Validation::$confirmPassError == "" && Validation::$fileError == "") {
             $this->password = hash('sha512', $this->password);
             $filename = $this->file["name"];
@@ -66,7 +62,15 @@ class RegisterUser {
                 $sql = "UPDATE users SET name='$this->name', email='$this->email', mobile='$this->mobileNum', gender='$this->gender', password='$this->password', file='$filename' where email = '$updateEmail'";
             } else {
                 $sql = "INSERT INTO users VALUES ('$this->name', '$this->email', '$this->mobileNum', '$this->gender', '$this->password', '$filename')";
+
+                // $stmt = $conn->prepare("INSERT INTO users (name, email, mobile, gender, password, file) VALUES (?, ?, ?, ?, ?, ?)");
+                // $stmt->bind_param("ssssss", $this->name, $this->email, $this->mobileNum, $this->gender, $this->password, $filename);
+
+                // // set parameters and execute
+                // $stmt->execute();
+                // $stmt->close();
             }
+
     
             DatabaseConnection::startConnection();
             if (mysqli_query(DatabaseConnection::$conn, $sql)) {

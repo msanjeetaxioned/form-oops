@@ -38,9 +38,9 @@ require('utility/form-validation.php');
                 <div class="gender-radio">
                     <h3>Gender:</h3>
                     <label for="male">Male</label>
-                    <input type="radio" id="male" name="gender" value="Male" <?php echo (isset($_POST['gender'])) ? (($_POST['gender'] === 'Male') ? 'checked' : '') : ''; ?>>
+                    <input type="radio" id="male" name="gender" value="Male" <?php echo isset($_COOKIE["update"]) ? (($fields['gender'] === 'Male') ? 'checked' : '') : ((isset($_POST['gender'])) ? (($_POST['gender'] === 'Male') ? 'checked' : '') : '') ?>>
                     <label for="female">Female</label>
-                    <input type="radio" id="female" name="gender" value="Female" <?php echo (isset($_POST['gender']) && $_POST['gender'] === 'Female') ? 'checked' : ''; ?>>
+                    <input type="radio" id="female" name="gender" value="Female" <?php echo isset($_COOKIE["update"]) ? (($fields['gender'] === 'Female') ? 'checked' : '') : ((isset($_POST['gender']) && $_POST['gender'] === 'Female') ? 'checked' : '') ?>>
                 </div>
                 <span class="error-message"><?php echo Validation::$genderError; ?></span>
             </div>
