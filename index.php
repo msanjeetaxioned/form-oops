@@ -1,3 +1,8 @@
+<?php
+if(isset($_COOKIE["email"])) {
+    header('Location: http://localhost/php/form-oops/users.php');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
