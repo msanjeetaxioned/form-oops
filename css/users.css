@@ -1,5 +1,5 @@
 .wrapper {
-    max-width: 750px;
+    max-width: 950px;
     width: 96%;
     margin: 50px auto;
 }
@@ -13,15 +13,26 @@ h2 {
     font-weight: bold;
 }
 
-.users-list { margin-bottom: 25px; }
+.users-list {
+    border: 2px solid #000;
+    margin-bottom: 25px; 
+}
 
 .users-list > li {
-    margin-bottom: 15px;
+    border-bottom: 2px solid #000;
     display: flex;
 }
 
-.users-list > li:last-child { margin-bottom: 0; }
-.users-list > li > span { display: inline-block; }
-.email { flex-basis: 50%; }
-.update { flex-basis: 25%; }
-.delete { flex-basis: 25%; }
+.users-list > li:last-child { border-bottom: none; }
+
+.users-list > li > span {
+    padding: 5px 0;
+    border-right: 2px solid #000;
+    display: inline-block;
+    flex-basis: 15%;
+    text-align: center;
+}
+
+.users-list > li > span:last-child { border-right: none; }
+.users-list > li:first-child > span { font-weight: bold; }
+.users-list > li > .email { flex-basis: 25%; }

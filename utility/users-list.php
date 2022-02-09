@@ -5,13 +5,25 @@ class UsersList {
 
     public static function createUserList() {
         DatabaseConnection::startConnection();
-        $select = mysqli_query(DatabaseConnection::$conn, "SELECT email FROM users;");
+        $select = mysqli_query(DatabaseConnection::$conn, "SELECT name, email, mobile, gender FROM users;");
 
         self::$numOfUsers = mysqli_num_rows($select);
 
+        echo "<li>";
+        echo "<span class='name'>Name</span>";
+        echo "<span class='email'>Email Id</span>";
+        echo "<span class='mobile'>Mobile No.</span>";
+        echo "<span class='gender'>Gender</span>";
+        echo "<span class='update'>Update User</span>";
+        echo "<span class='delete'>Delete User</span>";
+        echo "</li>";
+
         while($row = mysqli_fetch_assoc($select)) {
             echo "<li>";
+            echo "<span class='name'>" . $row["name"] . "</span>";
             echo "<span class='email'>" . $row["email"] . "</span>";
+            echo "<span class='mobile'>" . $row["mobile"] . "</span>";
+            echo "<span class='gender'>" . $row["gender"] . "</span>";
             echo "<span class='update'><a href='http://localhost/php/form-oops/users.php?update=" . $row['email'] . "' title='Update'>Update</a></span>";
             echo "<span class='delete'><a href='http://localhost/php/form-oops/users.php?email=" . $row['email'] . "' title='Delete'>Delete</a></span>";
             echo "</li>";
