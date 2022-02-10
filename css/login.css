@@ -4,6 +4,8 @@
     margin: 50px auto;
 }
 
+form { margin-bottom: 25px; }
+
 form > * {
     width: 100%;
     display: block;

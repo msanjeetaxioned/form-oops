@@ -36,6 +36,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit">submit</button>
             </div>
         </form>
+        <div class="login-div">
+            <h2>New User? Register Below</h2>
+            <a href="http://localhost/php/form-oops/" title="Register">Register</a>
+        </div>
     </div>
     <script>
     // To prevent Page Refresh from Submitting Form
