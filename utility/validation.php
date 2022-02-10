@@ -2,14 +2,14 @@
 
 class Validation 
 {
-    static $nameError = "";
-    static $emailError = "";
-    static $mobileNumError = "";
-    static $genderError = "";
-    static $passwordError = "Hint: Password must have minimum 8 characters. It must contain 1 Uppercase Character, 1 Number & 1 Special Character.";
-    static $confirmPassError = "";
-    static $fileError = "";
-    static $loginError = "";
+    public static $nameError = "";
+    public static $emailError = "";
+    public static $mobileNumError = "";
+    public static $genderError = "";
+    public static $passwordError = "Hint: Password must have minimum 8 characters. It must contain 1 Uppercase Character, 1 Number & 1 Special Character.";
+    public static $confirmPassError = "";
+    public static $fileError = "";
+    public static $loginError = "";
 
     public static function nameValidation($name) 
     {

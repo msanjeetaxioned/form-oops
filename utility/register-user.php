@@ -82,7 +82,6 @@ class RegisterUser
             $stmt->close();
             DatabaseConnection::closeDBConnection();
             header('Location: http://localhost/php/form-oops/submit.php');
-            
         }
     }
 }
