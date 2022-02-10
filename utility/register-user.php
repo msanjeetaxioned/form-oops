@@ -60,7 +60,7 @@ class RegisterUser
             $filename = $this->file["name"];
             if(isset($_COOKIE["update"])) {
                 $updateEmail = $_COOKIE["update"];
-                $sql = "UPDATE users SET name='$this->name', email='$this->email', mobile='$this->mobileNum', gender='$this->gender', password='$this->password', file='$filename' where email = '$updateEmail'";
+                $sql = "UPDATE users SET name='$this->name', mobile='$this->mobileNum', gender='$this->gender', password='$this->password', file='$filename' where email = '$updateEmail'";
             } else {
                 $sql = "INSERT INTO users VALUES ('$this->name', '$this->email', '$this->mobileNum', '$this->gender', '$this->password', '$filename')";
 
@@ -72,7 +72,7 @@ class RegisterUser
                 // $stmt->close();
             }
 
-            $submittedData = ["name" => $this->name, "email" => $this->email, "mobile" => $this->mobileNum, "gender" => $this->gender, "file" => $filename];
+            $submittedData = ["name" => $this->name, "mobile" => $this->mobileNum, "gender" => $this->gender, "file" => $filename];
             print_r($submittedData);
             setcookie("user-data", json_encode($submittedData), time() + 30 * 24 * 60 * 60, "/", "", 0);
 

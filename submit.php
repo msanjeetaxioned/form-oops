@@ -18,16 +18,15 @@
             <?php
             if(isset($_COOKIE["update"])) {
             ?>
-            <h2>User Updated Successfully, Thanks!</h2>
+            <h2>User '<?php echo $_COOKIE["update"]; ?>' Updated!</h2>
             <?php
             } else {
             ?>
-            <h2>User Registered Successfully, Thanks!</h2>
+            <h2>User Registered Successfully!</h2>
             <?php 
             } ?>
             <h3>Submitted Data:</h3>
             <p><small>Name: </small><?php echo $name; ?></p>
-            <p><small>Email Address: </small><?php echo $email; ?></p>
             <p><small>Mobile Number: </small><?php echo $mobile; ?></p>
             <p><small>Gender: </small><?php echo $gender; ?></p>
             <p><small>Uploaded Image:</small></p>
