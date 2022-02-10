@@ -58,31 +58,30 @@ class RegisterUser
         if (Validation::checkIfAllFieldsAreValid()) {
             $this->password = hash('sha512', $this->password);
             $filename = $this->file["name"];
+            DatabaseConnection::startConnection();
+            
             if(isset($_COOKIE["update"])) {
                 $updateEmail = $_COOKIE["update"];
-                $sql = "UPDATE users SET name='$this->name', mobile='$this->mobileNum', gender='$this->gender', password='$this->password', file='$filename' where email = '$updateEmail'";
+                // $sql = "UPDATE users SET name='$this->name', mobile='$this->mobileNum', gender='$this->gender', password='$this->password', file='$filename' where email = '$updateEmail'";
+
+                $stmt = DatabaseConnection::$conn->prepare("UPDATE users SET name=?, mobile=?, gender=?, password=?, file=? where email=?");
+                $stmt->bind_param("ssssss", $this->name, $this->mobileNum, $this->gender, $this->password, $filename, $updateEmail);
             } else {
-                $sql = "INSERT INTO users VALUES ('$this->name', '$this->email', '$this->mobileNum', '$this->gender', '$this->password', '$filename')";
+                // $sql = "INSERT INTO users VALUES ('$this->name', '$this->email', '$this->mobileNum', '$this->gender', '$this->password', '$filename')";
 
-                // $stmt = $conn->prepare("INSERT INTO users (name, email, mobile, gender, password, file) VALUES (?, ?, ?, ?, ?, ?)");
-                // $stmt->bind_param("ssssss", $this->name, $this->email, $this->mobileNum, $this->gender, $this->password, $filename);
-
-                // // set parameters and execute
-                // $stmt->execute();
-                // $stmt->close();
+                $stmt = DatabaseConnection::$conn->prepare("INSERT INTO users (name, email, mobile, gender, password, file) VALUES (?, ?, ?, ?, ?, ?)");
+                $stmt->bind_param("ssssss", $this->name, $this->email, $this->mobileNum, $this->gender, $this->password, $filename);
             }
 
             $submittedData = ["name" => $this->name, "mobile" => $this->mobileNum, "gender" => $this->gender, "file" => $filename];
             print_r($submittedData);
             setcookie("user-data", json_encode($submittedData), time() + 30 * 24 * 60 * 60, "/", "", 0);
 
-            DatabaseConnection::startConnection();
-            if (mysqli_query(DatabaseConnection::$conn, $sql)) {
-                DatabaseConnection::closeDBConnection();
-                header('Location: http://localhost/php/form-oops/submit.php');
-            } else {
-                echo "An Error Occurred " . mysqli_error(DatabaseConnection::$conn);
-            }
+            // set parameters and execute
+            $stmt->execute();
+            $stmt->close();
+            DatabaseConnection::closeDBConnection();
+            header('Location: http://localhost/php/form-oops/submit.php');
             
         }
     }

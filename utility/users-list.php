@@ -37,8 +37,14 @@ class UsersList
     {
         $email = $_GET["email"];
         DatabaseConnection::startConnection();
-        $delete = mysqli_query(DatabaseConnection::$conn, "delete from users where email = '$email'");
+        // $delete = mysqli_query(DatabaseConnection::$conn, "delete from users where email = '$email'");
+
+        $stmt = DatabaseConnection::$conn->prepare("delete from users where email = ?");
+        $stmt->bind_param("s", $email);
+        $stmt->execute();
+        $stmt->close();
         DatabaseConnection::closeDBConnection();
+        
         if($email == $_COOKIE["email"]) {
             setcookie("email", "", time() - 300, "/", "", 0);
             header('Location: http://localhost/php/form-oops/login.php');

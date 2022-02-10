@@ -44,16 +44,23 @@ class Validation
         DatabaseConnection::startConnection();
         if(isset($_COOKIE["update"])) {
             $updateEmail = $_COOKIE["update"];
-            $select = mysqli_query(DatabaseConnection::$conn, "SELECT * FROM users WHERE email = '$email' AND email <> '$updateEmail'");
+            // $select = mysqli_query(DatabaseConnection::$conn, "SELECT * FROM users WHERE email = '$email' AND email <> '$updateEmail'");
+            $stmt = DatabaseConnection::$conn->prepare("SELECT * FROM users WHERE email = ? AND email <> ?");
+            $stmt->bind_param("ss", $email, $updateEmail);
         } else { 
-            $select = mysqli_query(DatabaseConnection::$conn, "SELECT * FROM users WHERE email = '$email'");
+            // $select = mysqli_query(DatabaseConnection::$conn, "SELECT * FROM users WHERE email = '$email'");
+            $stmt = DatabaseConnection::$conn->prepare("SELECT * FROM users WHERE email = ?");
+            $stmt->bind_param("s", $email);
         }
 
-        if(mysqli_num_rows($select)) {
+        $stmt->execute();
+        $result = $stmt->get_result();
+        if(mysqli_num_rows($result)) {
             self::$emailError = ErrorMessages::$fromDatabaseErrors["email"];
         } else {
             self::$emailError = "";
         }
+        $stmt->close();
         DatabaseConnection::closeDBConnection();
     }
     
@@ -152,8 +159,14 @@ class Validation
     {
         DatabaseConnection::startConnection();
         $password = hash('sha512', $password);
-        $select = mysqli_query(DatabaseConnection::$conn, "SELECT * FROM users WHERE email = '$email' AND password = '$password';");
-        if(mysqli_num_rows($select)) {
+        // $select = mysqli_query(DatabaseConnection::$conn, "SELECT * FROM users WHERE email = '$email' AND password = '$password';");
+        $stmt = DatabaseConnection::$conn->prepare("SELECT * FROM users WHERE email = ? AND password = ?");
+        $stmt->bind_param("ss", $email, $password);
+
+        $stmt->execute();
+        $result = $stmt->get_result();
+
+        if(mysqli_num_rows($result)) {
             self::$loginError = "";
         } else {
             self::$loginError = ErrorMessages::$loginErrorMessage;
