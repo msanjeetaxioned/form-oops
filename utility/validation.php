@@ -163,7 +163,7 @@ class Validation
 
     public static function checkIfAllFieldsAreValid() 
     {
-        $arr = [self:$nameError, self:$emailError, self:$mobileNumError, self:$genderError, self:$passwordError, self:$confirmPassError, self:$fileError];
+        $arr = [self::$nameError, self::$emailError, self::$mobileNumError, self::$genderError, self::$passwordError, self::$confirmPassError, self::$fileError];
 
         for($i = 0; $i < count($arr); $i++) {
             if($arr[$i] != "") {
