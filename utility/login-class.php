@@ -1,11 +1,13 @@
 <?php
 
-class Login {
+class Login 
+{
     public static $rememberMe = false;
     public static $loginEmail;
     public static $loginPassword;
     
-    public static function onSubmit() {
+    public static function onSubmit() 
+    {
         self::$loginEmail = $_POST["login-email"];
         self::$loginPassword = $_POST["login-password"];
 

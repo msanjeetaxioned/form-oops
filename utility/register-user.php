@@ -47,14 +47,14 @@ class RegisterUser {
         Validation::fileValidation($this->file);
 
         // Reset Form on Successful Submit
-        if (Validation::$nameError == "" && Validation::$emailError == "" && Validation::$mobileNumError == "" && Validation::$genderError == "" && Validation::$passwordError == "" && Validation::$confirmPassError == "" && Validation::$fileError == "") {
+        if (Validation::checkIfAllFieldsAreValid()) {
             $_POST = [];
         }
     }
 
     public function onSubmit() 
     {
-        if (Validation::$nameError == "" && Validation::$emailError == "" && Validation::$mobileNumError == "" && Validation::$genderError == "" && Validation::$passwordError == "" && Validation::$confirmPassError == "" && Validation::$fileError == "") {
+        if (Validation::checkIfAllFieldsAreValid()) {
             $this->password = hash('sha512', $this->password);
             $filename = $this->file["name"];
             if(isset($_COOKIE["update"])) {

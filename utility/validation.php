@@ -1,7 +1,7 @@
 <?php
 
-class Validation {
-    static $allValidated = false;
+class Validation 
+{
     static $nameError = "";
     static $emailError = "";
     static $mobileNumError = "";
@@ -11,7 +11,8 @@ class Validation {
     static $fileError = "";
     static $loginError = "";
 
-    static function nameValidation($name) {
+    public static function nameValidation($name) 
+    {
         if (empty($name)) {
             self::$nameError = ErrorMessages::$emptyErrors["name"];
         } elseif (strlen($name) >= 2) {
@@ -24,7 +25,8 @@ class Validation {
         }
     }
 
-    static function emailValidation($email) {
+    public static function emailValidation($email) 
+    {
         if (empty($email)) {
             self::$emailError = ErrorMessages::$emptyErrors["email"];
         } else {
@@ -37,7 +39,8 @@ class Validation {
         }
     }
 
-    static function checkIfEmailAlreadyUsedInDB($email) {
+    public static function checkIfEmailAlreadyUsedInDB($email) 
+    {
         DatabaseConnection::startConnection();
         if(isset($_COOKIE["update"])) {
             $updateEmail = $_COOKIE["update"];
@@ -54,7 +57,8 @@ class Validation {
         DatabaseConnection::closeDBConnection();
     }
     
-    static function mobileNumValidation($mobileNum) {
+    public static function mobileNumValidation($mobileNum) 
+    {
         if (empty($mobileNum)) {
             self::$mobileNumError = ErrorMessages::$emptyErrors["mobile-num"];
         } else {
@@ -68,7 +72,8 @@ class Validation {
         }
     }
     
-    static function genderValidation($gender) {
+    public static function genderValidation($gender) 
+    {
         if ($gender == "") {
             self::$genderError = ErrorMessages::$emptyErrors["gender"];
         } else {
@@ -76,7 +81,8 @@ class Validation {
         }
     }
     
-    static function passwordValidation($password) {
+    public static function passwordValidation($password) 
+    {
         if (empty($password)) {
             self::$passwordError = ErrorMessages::$emptyErrors["password"];
         } else {
@@ -90,7 +96,8 @@ class Validation {
         }
     }
     
-    static function confirmPasswordValidation($password, $confirmPass) {
+    public static function confirmPasswordValidation($password, $confirmPass) 
+    {
         if (empty($confirmPass)) {
             self::$confirmPassError = ErrorMessages::$emptyErrors["confirm-pass"];
         } else {
@@ -103,7 +110,8 @@ class Validation {
         }
     }
     
-    static function fileValidation($file) {
+    public static function fileValidation($file) 
+    {
         if (empty($file["name"])) {
             self::$fileError = ErrorMessages::$emptyErrors["file"];
             return;
@@ -140,7 +148,8 @@ class Validation {
         }
     }
 
-    static function loginEmailAndPasswordValidation($email, $password) {
+    public static function loginEmailAndPasswordValidation($email, $password) 
+    {
         DatabaseConnection::startConnection();
         $password = hash('sha512', $password);
         $select = mysqli_query(DatabaseConnection::$conn, "SELECT * FROM users WHERE email = '$email' AND password = '$password';");
@@ -150,5 +159,17 @@ class Validation {
             self::$loginError = ErrorMessages::$loginErrorMessage;
         }
         DatabaseConnection::closeDBConnection();
+    }
+
+    public static function checkIfAllFieldsAreValid() 
+    {
+        $arr = [self:$nameError, self:$emailError, self:$mobileNumError, self:$genderError, self:$passwordError, self:$confirmPassError, self:$fileError];
+
+        for($i = 0; $i < count($arr); $i++) {
+            if($arr[$i] != "") {
+                return false;
+            }
+        }
+        return true;
     }
 }

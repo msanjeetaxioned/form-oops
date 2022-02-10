@@ -21,7 +21,11 @@ require('utility/db-connection.php');
 require('utility/update-user.php');
 require('utility/validation.php');
 require('utility/register-user.php');
-require('utility/form-validation.php');
+$user = new RegisterUser();
+// Check if form submitted with 'POST' method
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $user->validateFields();
+}
 ?>
     <div class="wrapper">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" enctype="multipart/form-data">
@@ -66,7 +70,10 @@ require('utility/form-validation.php');
             </div>
         </form>
         <?php
-        require('utility/form-submit.php');
+        // After Successful form submit show message and submitted data to User.
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            $user->onSubmit();
+        }
         ?>
     </div>
     <script>

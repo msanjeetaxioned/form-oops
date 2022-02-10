@@ -1,9 +1,11 @@
 <?php
 
-class UsersList {
+class UsersList 
+{
     public static $numOfUsers;
 
-    public static function createUserList() {
+    public static function createUserList() 
+    {
         DatabaseConnection::startConnection();
         $select = mysqli_query(DatabaseConnection::$conn, "SELECT name, email, mobile, gender FROM users;");
 
@@ -31,7 +33,8 @@ class UsersList {
         DatabaseConnection::closeDBConnection();
     }
 
-    public static function deleteUserFromDB() {
+    public static function deleteUserFromDB() 
+    {
         $email = $_GET["email"];
         DatabaseConnection::startConnection();
         $delete = mysqli_query(DatabaseConnection::$conn, "delete from users where email = '$email'");
@@ -42,7 +45,8 @@ class UsersList {
         }
     }
 
-    public static function updateUserInDB() {
+    public static function updateUserInDB() 
+    {
         $email = $_GET["update"];
 
         setcookie("update", $email, time() + 24 * 60 * 60, "/", "", 0);
