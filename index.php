@@ -1,5 +1,5 @@
 <?php
-if(isset($_COOKIE["email"])) {
+if(isset($_COOKIE["email"]) && !isset($_COOKIE["update"])) {
     header('Location: http://localhost/php/form-oops/users.php');
 }
 ?>
