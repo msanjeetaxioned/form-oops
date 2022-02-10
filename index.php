@@ -69,6 +69,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit">submit</button>
             </div>
         </form>
+        <div class="login-div">
+            <h2>Registered Already? Login</h2>
+            <a href="http://localhost/php/form-oops/login.php" title="Login">Login</a>
+        </div>
         <?php
         // After Successful form submit show message and submitted data to User.
         if ($_SERVER["REQUEST_METHOD"] == "POST") {

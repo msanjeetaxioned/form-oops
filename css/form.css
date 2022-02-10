@@ -1,14 +1,16 @@
 .wrapper {
     max-width: 900px;
     width: 55%;
-    margin: 50px auto;
+    margin: 30px auto;
 }
 
 p.note {
-    margin-bottom: 25px;
+    margin-bottom: 20px;
     font-size: 18px;
     word-spacing: 2px;
 }
+
+form { margin-bottom: 25px; }
 
 .percent-50 { 
     display: flex;
@@ -21,6 +23,19 @@ input[type="file"] { padding: unset; }
 
 .gender-div > h3 {
     font-size: 20px;
+    font-weight: bold;
+}
+
+.login-div > h2 {
+    margin-bottom: 20px;
+    color: #000;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login-div > a { 
+    display: inline-block;
+    font-size: 16px;
     font-weight: bold;
 }
 

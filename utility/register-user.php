@@ -1,6 +1,7 @@
 <?php
 
-class RegisterUser {
+class RegisterUser 
+{
     public $name;
     public $email;
     public $mobileNum;

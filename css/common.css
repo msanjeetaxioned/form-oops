@@ -9,11 +9,11 @@ figure > img {
     object-fit: contain;
 }
 
-form > * { margin-bottom: 20px; }
+form > * { margin-bottom: 15px; }
 form > *:last-child { margin-bottom: 0; }
 
 h1 {
-    margin-bottom: 40px;
+    margin-bottom: 25px;
     font-size: 32px;
     font-weight: bold;
     text-transform: capitalize;
